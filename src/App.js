@@ -11,10 +11,15 @@ export default class PointcloudNavigator extends React.Component {
 
   render() {
     return (
-      <div id="potree-root">
-        <div ref={this.potreeContainerDiv} className={"potree_container "}>
-          <div id="potree_render_area"></div>
-        </div>
+      <div ref={this.potreeContainerDiv} className="potree-container">
+        <div
+          id="potree_render_area"
+          style={{
+            backgroundImage:
+              "url('../build/potree/resources/images/background.jpg')",
+          }}
+        />
+        <div id="potree_sidebar_container" />
       </div>
     );
   }
@@ -29,8 +34,10 @@ export default class PointcloudNavigator extends React.Component {
     this.viewer.setClipTask(Potree.ClipTask.SHOW_INSIDE);
     this.viewer.loadSettingsFromURL();
     this.viewer.setControls(this.viewer.earthControls);
+
     // Load and add point cloud to scene
-    let url = "https://raw.githubusercontent.com/potree/potree/develop/pointclouds/lion_takanawa/cloud.js"; // do not forget to put your pointcloud data in the public/pointcloud/ folder
+    let url =
+      "https://raw.githubusercontent.com/potree/potree/develop/pointclouds/lion_takanawa/cloud.js"; // do not forget to put your pointcloud data in the public/pointcloud/ folder
     Potree.loadPointCloud(url).then(
       (e) => {
         let scene = this.viewer.scene;
