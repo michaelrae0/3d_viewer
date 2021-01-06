@@ -1,4 +1,5 @@
 import React from "react";
+import "./App.css";
 
 // import vanillaJS Potree libs, /!\ would be best with proper ES6 import
 const Potree = window.Potree;
@@ -7,21 +8,6 @@ export default class PointcloudNavigator extends React.Component {
   constructor(props) {
     super(props);
     this.potreeContainerDiv = React.createRef();
-  }
-
-  render() {
-    return (
-      <div ref={this.potreeContainerDiv} className="potree-container">
-        <div
-          id="potree_render_area"
-          style={{
-            backgroundImage:
-              "url('../build/potree/resources/images/background.jpg')",
-          }}
-        />
-        <div id="potree_sidebar_container" />
-      </div>
-    );
   }
 
   componentDidMount() {
@@ -36,8 +22,7 @@ export default class PointcloudNavigator extends React.Component {
     this.viewer.setControls(this.viewer.earthControls);
 
     // Load and add point cloud to scene
-    let url =
-      "https://raw.githubusercontent.com/potree/potree/develop/pointclouds/lion_takanawa/cloud.js"; // do not forget to put your pointcloud data in the public/pointcloud/ folder
+    let url = "https://raw.githubusercontent.com/potree/potree/develop/pointclouds/lion_takanawa/cloud.js";
     Potree.loadPointCloud(url).then(
       (e) => {
         let scene = this.viewer.scene;
@@ -55,5 +40,17 @@ export default class PointcloudNavigator extends React.Component {
 
   componentDidUpdate() {
     // If you want to update Potree View/other element upon render(), put it here
+  }
+
+  render() {
+    return (
+      <div ref={this.potreeContainerDiv} className="potree-container">
+        <div
+          id="potree_render_area"
+          style={{ backgroundImage: "url('../build/potree/resources/images/background.jpg')" }}
+        />
+        <div id="potree_sidebar_container" />
+      </div>
+    );
   }
 }
