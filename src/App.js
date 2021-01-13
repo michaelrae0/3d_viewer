@@ -1,8 +1,7 @@
 import React from "react";
 import "./App.css";
 
-// import vanillaJS Potree libs, /!\ would be best with proper ES6 import
-const Potree = window.Potree;
+const Potree = window.Potree
 
 export default class PointcloudNavigator extends React.Component {
   constructor(props) {
@@ -25,7 +24,7 @@ export default class PointcloudNavigator extends React.Component {
     let url = "https://raw.githubusercontent.com/potree/potree/develop/pointclouds/lion_takanawa/cloud.js";
     Potree.loadPointCloud(url).then(
       (e) => {
-        let scene = this.viewer.scene;
+        // let scene = this.viewer.scene;
         let pointcloud = e.pointcloud;
         let material = pointcloud.material;
         material.activeAttributeName = "rgba";
